@@ -1,0 +1,15 @@
+{
+  "name": "pymount",
+  "version": "1.0.0",
+  "description": "Helper program for mounting remote server directories to a local filesystem",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brennan Davis",
+  "license": "MIT",
+  "bin": {
+    "pymount": "./pymount.py",
+    "pyumount": "./pyumount.py"
+  }
+}
