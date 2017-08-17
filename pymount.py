@@ -20,13 +20,16 @@ def create_dirs(directories):
 
             
 # mounts the directories
-def mount_server(directories, ssh_host, local_mount_dir):
-    
-    for directory in directories:
-        opts = "auto_cache,defer_permissions,follow_symlinks,reconnect,noappledouble,allow_other,volname=%s" % directory
+def mount_server(ssh_host, local_mount_dir, directories):
+    opts = "auto_cache,defer_permissions,follow_symlinks,reconnect,noappledouble,allow_other"
 
-        # Create connection to server
-        os.system( "sshfs %s/%s %s/%s -o %s" % (ssh_host, directory, local_mount_dir, directory, opts) )
+    if directories:
+        for directory in directories:
+            # Create connection to server
+            os.system( "sshfs %s/%s %s/%s -o %s,volname=%s" % (ssh_host, directory, local_mount_dir, directory, opts, directory) )
+    else:
+        os.system( "sshfs %s %s -o %s" % (ssh_host, local_mount_dir, opts) )
+
 
 
 # generate config file
@@ -54,7 +57,7 @@ def get_config(config_file):
 
 # parse the args input by the user
 parser = argparse.ArgumentParser(description='Mount directories from remote server to local filesystem.')
-parser.add_argument("directories", metavar='directories', nargs='*', help="directories to mount", default=None)
+parser.add_argument("-d", "--directories", nargs='*', help="sub-directories inside main directory to mount")
 parser.add_argument("-gc", "--generate-config", action='store_true', help="generates config file containing the remote server path and the local directory path to mount remote directories to")
 
 # get args
@@ -78,10 +81,8 @@ elif os.path.exists(config_file):
         # create directories if they don't exist
         create_dirs(directories)
 
-        # mount the directories
-        mount_server(directories, ssh_host, local_mount_dir)
-    else:
-        print "please enter directories to mount"
+    # mount the directories
+    mount_server(ssh_host, local_mount_dir, directories)
 
 else:
     print "Config file not found. Please run 'pymount --generate-config' to generate a config file"
