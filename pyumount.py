@@ -29,8 +29,8 @@ if args.directory:
 else:
     umount_dir = ""
 
-def unmount_alpha():
-    # Disconnect single alpha directory
+def unmount_directories():
+    # Disconnect single directory
     if umount_dir:
         print "single directory"
 
@@ -43,7 +43,7 @@ def unmount_alpha():
             os.system("rm -r %s/%s" % (local_mount_dir, umount_dir))
             print '"%s" directory unmounted' % umount_dir
 
-    # Disconnect all alpha directories
+    # Disconnect all directories
     else:
 
         unmounted_dirs = 0
@@ -76,4 +76,4 @@ def unmount_alpha():
         else:
             os.system("rm -rf %s/*" % local_mount_dir)
 
-unmount_alpha()
+unmount_directories()
