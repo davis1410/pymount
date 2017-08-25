@@ -17,6 +17,7 @@ def unmount_directories(local_mount_dir, directories):
         else:
             os.system("umount %s/%s" % (local_mount_dir, directory))
             print '"%s" directory unmounted' % directory
+            directories_unmounted += 1
 
     if directories_unmounted == 0:
         print "No directories currently mounted"
