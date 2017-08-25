@@ -6,7 +6,7 @@ Helper command line program for OSX to mount remote directories to a local files
 2. Install [FUSE (SSHFS)](https://osxfuse.github.io/)
 3. Install Pymount via npm:
 
-        $ npm install -g https://github.com/davis1410/pymount.git
+        $ npm install -g git+https://github.com/davis1410/pymount.git
 4. Run generate config to create the configuration file:
 
         $ pymount --generate-config
