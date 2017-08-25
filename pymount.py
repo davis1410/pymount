@@ -20,7 +20,7 @@ def create_dirs(directories):
 
             
 # mounts the directories
-def mount_server(ssh_host, local_mount_dir, directories):
+def mount_directories(ssh_host, local_mount_dir, directories):
     opts = "auto_cache,defer_permissions,follow_symlinks,reconnect,noappledouble,allow_other"
 
     if directories:
@@ -82,7 +82,7 @@ elif os.path.exists(config_file):
         create_dirs(directories)
 
     # mount the directories
-    mount_server(ssh_host, local_mount_dir, directories)
+    mount_directories(ssh_host, local_mount_dir, directories)
 
 else:
     print "Config file not found. Please run 'pymount --generate-config' to generate a config file"
