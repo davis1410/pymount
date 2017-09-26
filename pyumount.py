@@ -15,8 +15,8 @@ def unmount_directories(local_mount_dir, directories):
         if not os.path.ismount("%s/%s" % (local_mount_dir, directory)):
             continue
         else:
-            os.system("umount %s/%s" % (local_mount_dir, directory))
             print 'unmounting directory: "%s"' % directory
+            os.system("umount %s/%s" % (local_mount_dir, directory))
             directories_unmounted += 1
 
     if directories_unmounted == 0:
@@ -25,7 +25,7 @@ def unmount_directories(local_mount_dir, directories):
         dirs_to_unmount = []
         for directory in directories:
             if os.path.ismount("%s/%s" % (local_mount_dir, directory)):
-                print '"%s" directory did not unmount properly. Removing directory aborted.'
+                print '"%s" directory did not unmount properly. Removing directory aborted.' % directory
             else:
                 dirs_to_unmount.append(directory)
         
