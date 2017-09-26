@@ -16,13 +16,21 @@ def unmount_directories(local_mount_dir, directories):
             continue
         else:
             os.system("umount %s/%s" % (local_mount_dir, directory))
-            print '"%s" directory unmounted' % directory
+            print 'unmounting directory: "%s"' % directory
             directories_unmounted += 1
 
     if directories_unmounted == 0:
         print "No directories currently mounted"
     else:
-        os.system("rm -rf %s/*" % local_mount_dir)
+        dirs_to_unmount = []
+        for directory in directories:
+            if os.path.ismount("%s/%s" % (local_mount_dir, directory)):
+                print '"%s" directory did not unmount properly. Removing directory aborted.'
+            else:
+                dirs_to_unmount.append(directory)
+        
+        for directory in dirs_to_unmount:
+            os.system("rm -rf %s/%s" % (local_mount_dir, directory))
 
 # get configuration
 def get_config(config_file):
