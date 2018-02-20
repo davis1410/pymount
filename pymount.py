@@ -27,11 +27,12 @@ def mount_directories(ssh_host, local_mount_dir, directories):
 
     if directories:
         for directory in directories:
+            # handle nested directories
+            dir_name = directory.split('/')[-1]
             # Create connection to server
-            os.system( "sshfs %s/%s %s/%s -o %s,volname=%s" % (ssh_host, directory, local_mount_dir, directory, opts, directory) )
+            os.system( "sshfs %s/%s %s/%s -o %s,volname=%s" % (ssh_host, directory, local_mount_dir, dir_name, opts, dir_name) )
     else:
         os.system( "sshfs %s %s -o %s" % (ssh_host, local_mount_dir, opts) )
-
 
 
 # generate config file
