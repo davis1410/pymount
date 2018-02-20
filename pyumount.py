@@ -11,16 +11,18 @@ def unmount_directories(local_mount_dir, directories):
     directories_unmounted = 0
 
     for directory in directories:
+        dir_path = "%s/%s" % (local_mount_dir, directory)
         # check if this directory is a mount point, and if not, skip it
-        if not os.path.ismount("%s/%s" % (local_mount_dir, directory)):
+        if not os.path.ismount(dir_path):
             continue
         else:
-            os.system("umount %s/%s" % (local_mount_dir, directory))
-            if not os.path.ismount("%s/%s" % (local_mount_dir, directory)):
+            os.system("umount %s" % dir_path)
+            if not os.path.ismount(dir_path):
                 print '"%s" directory unmounted' % directory
+                os.system("rm -r %s" % dir_path)
                 directories_unmounted += 1
             else:
-                print 'error unmountind "%s" directory' % directory
+                print 'error unmounting "%s" directory' % directory
                 break
 
     if directories_unmounted == 0:
