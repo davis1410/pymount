@@ -16,7 +16,7 @@ def unmount_directories(local_mount_dir, directories):
         if not os.path.ismount(dir_path):
             continue
         else:
-            os.system("umount %s" % dir_path)
+            os.system("umount %s/test" % dir_path)
             if not os.path.ismount(dir_path):
                 print '"%s" directory unmounted' % directory
                 os.system("rm -r %s" % dir_path)
