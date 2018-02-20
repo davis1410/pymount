@@ -22,7 +22,7 @@ def unmount_directories(local_mount_dir, directories):
                 os.system("rm -r %s" % dir_path)
                 directories_unmounted += 1
             else:
-                print 'error unmounting "%s" directory' % directory
+                print 'Error unmounting "%s" directory. Aborting unmounting...' % directory
                 directories_unmounted += 1
                 break
 
