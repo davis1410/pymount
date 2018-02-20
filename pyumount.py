@@ -23,7 +23,7 @@ def unmount_directories(local_mount_dir, directories):
                 print 'error unmountind "%s" directory' % directory
                 break
 
-    if directories_unmounted === 0:
+    if directories_unmounted == 0:
         print "No directories currently mounted"
 
 # get configuration
