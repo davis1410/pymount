@@ -20,10 +20,11 @@ def unmount_directories(local_mount_dir, directories):
             if not os.path.ismount(dir_path):
                 print '"%s" directory unmounted' % directory
                 os.system("rm -r %s" % dir_path)
-                directories_unmounted += 1
             else:
                 print 'error unmounting "%s" directory' % directory
                 break
+                
+            directories_unmounted += 1
 
     if directories_unmounted == 0:
         print "No directories currently mounted"
