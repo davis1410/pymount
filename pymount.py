@@ -8,7 +8,9 @@ import json
 # creates directories to mount to if they don't exist
 def create_dirs(directories):
     for directory in directories:
-        dir_path = "%s/%s" % (local_mount_dir, directory)
+        # handle nested directories
+        dir_name = directory.split('/')[-1]
+        dir_path = "%s/%s" % (local_mount_dir, dir_name)
 
         # Check if directory exists, and if not, create it
         if not os.path.exists(dir_path):
@@ -80,7 +82,7 @@ elif os.path.exists(config_file):
     if directories:
         # create directories if they don't exist
         create_dirs(directories)
-
+        
     # mount the directories
     mount_directories(ssh_host, local_mount_dir, directories)
 
