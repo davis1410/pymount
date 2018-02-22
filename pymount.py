@@ -23,7 +23,7 @@ def create_dirs(directories):
             
 # mounts the directories
 def mount_directories(ssh_host, local_mount_dir, directories):
-    opts = "auto_cache,defer_permissions,follow_symlinks,reconnect,noappledouble,allow_other"
+    opts = "auto_cache,defer_permissions,follow_symlinks,reconnect,noappledouble"
 
     if directories:
         for directory in directories:
