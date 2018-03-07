@@ -11,11 +11,12 @@ def create_dirs(directories):
         # handle nested directories
         dir_name = directory.split('/')[-1]
         dir_path = "%s/%s" % (local_mount_dir, dir_name)
+        print "inside create_dirs: %s" % local_mount_dir
 
         # Check if directory exists, and if not, create it
         if not os.path.exists(dir_path):
             os.makedirs(dir_path)
-            print 'directory created: "%s"' % directory
+            print 'directory created: "%s"' % dir_name
 
         else:
             print 'mounting existing directory: "%s"' % directory
