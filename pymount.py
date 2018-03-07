@@ -39,6 +39,10 @@ def mount_directories(ssh_host, local_mount_dir, directories):
 def generate_config(config_file):
     ssh_host = raw_input("Please enter an ssh host (e.g. user@server:/path/to/remote/dir): ")
     local_mount_dir = raw_input("Please enter a local directory path to mount remote directories to (e.g. /Users/username/Development): ")
+    if not os.path.exists(local_mount_dir):
+        create_local_mount_dir = raw_input("The local directory you entered does not exist. Create directory? (y/n)")
+        if create_local_mount_dir == 'y':
+            os.system("mkdir %s" % local_mount_dir)
     
     config_data = {
         "ssh_host": ssh_host,
