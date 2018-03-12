@@ -1,6 +1,6 @@
 {
   "name": "pymount",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Helper program for mounting remote server directories to a local filesystem",
   "main": "index.js",
   "scripts": {
