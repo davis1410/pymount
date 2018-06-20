@@ -8,6 +8,10 @@ Helper command line program for OSX to mount remote directories to a local files
 
         $ npm install -g git+https://github.com/davis1410/pymount.git
         
+    or:
+    
+        $ npm install -g git+ssh://git@github.com/davis1410/pymount.git
+        
 4. Run generate config to create the configuration file:
 
         $ pymount --generate-config
